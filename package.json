@@ -43,5 +43,5 @@
       "stylelint --fix"
     ]
   },
-  "packageManager": "pnpm@8.15.6"
+  "packageManager": "pnpm@9.5.0"
 }

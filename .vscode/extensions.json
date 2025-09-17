@@ -18,9 +18,6 @@
     "vunguyentuan.vscode-css-variables",
     // 在 package.json 中显示 PNPM catalog 的版本
     "antfu.pnpm-catalog-lens",
-    "streetsidesoftware.code-spell-checker",
-    "vue.volar",
-    "lokalise.i18n-ally",
     "adam-bender.commit-message-editor"
   ],
   "unwantedRecommendations": [

@@ -1,3 +1,12 @@
 packages:
-  - "apps/*"
-  - "packages/*"
+  - apps/*
+  - packages/*
+
+catalogs:
+  vue3:
+    vue: ^3.5.18
+
+ignoredBuiltDependencies:
+  - esbuild
+  - simple-git-hooks
+  - unrs-resolver
