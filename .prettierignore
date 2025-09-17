@@ -16,4 +16,3 @@ CODEOWNERS
 public
 .npmrc
 *-lock.yaml
-packages/web/src/assets/font
