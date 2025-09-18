@@ -1,6 +1,5 @@
-// utils
-export { setupCounter } from "./utils/counter";
+// import Test from './components/Test.vue'
 
-// components
-export { Header } from "./components/header";
-export { Counter } from "./components/counter";
+// export { Test }
+
+export * from './components'

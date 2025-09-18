@@ -1,0 +1,37 @@
+{
+    "vue3模板": {
+        "prefix": "vvv",
+        "scope": "vue",
+        "body": [
+            "<script setup lang=\"ts\">",
+            "/** ",
+            "  Workspace  : $WORKSPACE_NAME",
+            "  Name       : ${TM_FILENAME/(.*)\\..+$/$1/}",
+            "  Create Time: $CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND",
+            "  Author     : QES Front-end Team",
+            "  Description: TODO:${0: 请添加描述}",
+            " */",
+            "",
+            "import { reactive } from 'vue'",
+            "",
+            "// 组件属性",
+            "const props = defineProps(${1:{}})",
+            "",
+            "// 组件状态",
+            "const state = reactive(${2:{}})",
+            "",
+            "// 组件事件",
+            "const emit = defineEmits(${3:{}})",
+            "</script>",
+            "",
+            "<template>",
+            "  <div>$4</div>",
+            "</template>",
+            "",
+            "<style lang=\"less\" scoped></style>",
+            ""
+        ],
+
+        "description": "vue3模板"
+    }
+}
