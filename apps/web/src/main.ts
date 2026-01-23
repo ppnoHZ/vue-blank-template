@@ -1,9 +1,9 @@
-import { createApp } from 'vue'
+import { createApp } from "vue";
 
-import App from './App.vue'
+import App from "./App.vue";
 
-import 'virtual:unocss-devtools'
+import "virtual:unocss-devtools";
 
-import 'uno.css'
+import "uno.css";
 
-createApp(App).mount('#app')
+createApp(App).mount("#app");

@@ -3,29 +3,23 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "commitlint": "commitlint --edit $1",
     "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "oxfmt --write .",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint --fix",
     "prepare": "npx simple-git-hooks",
-    "commitlint": "commitlint --edit $1"
+    "type-check": "turbo run type-check"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
-    "@qes/eslint-config": "1.0.8",
-    "@qes/prettier-config": "^1.0.2",
-    "@qes/stylelint-config": "1.0.3",
     "@qes/tsconfig": "1.0.2",
     "@types/node": "^24.5.0",
-    "eslint": "^9.32.0",
-    "eslint-plugin-jsonc": "^2.16.0",
-    "eslint-plugin-prettier": "^5.5.4",
-    "eslint-plugin-vue": "^10.4.0",
     "lint-staged": "^14.0.1",
-    "postcss-less": "^6.0.0",
-    "prettier": "^3.2.5",
+    "oxfmt": "^0.24.0",
+    "oxlint": "^1.39.0",
     "simple-git-hooks": "^2.11.0",
-    "stylelint": "16.22.0",
     "turbo": "^2.5.6"
   },
   "simple-git-hooks": {
@@ -34,13 +28,10 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,vue}": [
-      "eslint --fix"
+      "oxlint --fix"
     ],
-    "*.{ts,tsx,js,jsx,vue,md,json,css,scss,less}": [
-      "prettier --write"
-    ],
-    "*.{css,scss,less}": [
-      "stylelint --fix"
+    "*.{ts,tsx,js,jsx,vue,md,json}": [
+      "oxfmt --write"
     ]
   },
   "packageManager": "pnpm@9.5.0"
