@@ -1,3 +1,1 @@
-import Test from "./Test.vue";
-
-export { Test };
+export { Button } from "./button/index";

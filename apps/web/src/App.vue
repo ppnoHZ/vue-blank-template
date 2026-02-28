@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { Test } from "@qes-editor/ui";
+import { Button } from "@qes-editor/ui";
 </script>
 
 <template>
-  <Test v-html="123" />
+  <Test />
+  <Button>Click Me</Button>
 </template>
 
 <style scoped></style>
