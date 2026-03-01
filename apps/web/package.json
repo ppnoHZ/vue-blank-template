@@ -9,20 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@qes-editor/component": "workspace:*",
     "@qes-editor/ui": "workspace:*",
     "@qes/tsconfig": "^1.0.2",
     "vue": "catalog:vue3"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.1",
     "@vitejs/plugin-vue-jsx": "catalog:vue3",
     "@vue/tsconfig": "^0.7.0",
-    "less": "^4.4.1",
-    "typescript": "~5.8.3",
     "unocss": "^66.5.1",
-    "vite": "^7.1.2",
+    "vite-plugin-cdn-import": "^1.0.1",
     "vite-plugin-mock": "^3.0.2",
-    "vite-plugin-vue-devtools": "catalog:vue3",
-    "vue-tsc": "^3.0.5"
+    "vite-plugin-vue-devtools": "catalog:vue3"
   }
 }
