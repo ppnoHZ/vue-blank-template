@@ -146,5 +146,5 @@
     "builtin": true
   },
   "globals": {},
-  "ignorePatterns": []
+  "ignorePatterns": ["dist", "node_modules", "build", "coverage", "public"]
 }
