@@ -20,6 +20,9 @@
 ### TODO List
 
 - [ ] http请求，复用iChain Personal Workspace插件的http请求工具
+- [ ] 组件开发规范
+- [ ] 组件开发文档
+- [ ] 组件开发示例
 
 ## Quick Start
 
