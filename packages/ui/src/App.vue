@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button as QButton, ConfigProvider } from "../component";
+import { Button as QButton, ConfigProvider } from "../components";
 </script>
 
 <template>

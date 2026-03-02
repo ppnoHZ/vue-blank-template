@@ -1,8 +1,11 @@
 {
-  "extends": "@qes/tsconfig/base.json",
-  "compilerOptions": {
-    "moduleResolution": "bundler"
-  },
-  "include": ["."],
-  "exclude": ["node_modules"]
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ]
 }

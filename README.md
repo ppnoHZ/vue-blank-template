@@ -1,4 +1,17 @@
-# `Vue3` Template
+# `iChain Personal Workspace` Component Plugin Template
+
+## 注意事项
+
+本项目主要用于开发iChain Personal Workspace插件使用，打包出来的文件会被iChain Personal Workspace插件加载使用。
+
+### packages/ui/component
+
+此目录是组件源码所在位置，下面的每一个文件夹都是一个组件,会独立打包成一个js文件，打包出来的文件会被iChain Personal Workspace插件加载使用。
+为了避免样式跟iChain的冲突，全局的样式需要引入到组件里，打包的时候会加上限定。未来如果交互没有问题可以使用 Web Components 来开发组件，避免样式冲突。
+
+### 第三方插件的使用
+
+先确定iChain里是否有引用，如果有引用则需要iChain暴露为全局变量，打包的时候需要把第三方插件设置为外部依赖，打包出来的文件会被iChain Personal Workspace插件加载使用。
 
 ## Quick Start
 

@@ -11,7 +11,7 @@ const handleScriptLoad = () => {
     <!-- 传入组件地址以及它在 ES 模块中的导出名 componentName -->
     <!-- 原本写在 Button 上的参数和自定义事件可以直接绑定在这里，它们会被透传 -->
     <RemoteScript
-      src="http://localhost:5173/0.0.0/button.es.js"
+      src="http://localhost:5173/0.0.1/button.es.js"
       componentName="Component"
       msg="hello world"
       @load="handleScriptLoad"

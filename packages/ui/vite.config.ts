@@ -1,39 +1,50 @@
-import { defineConfig } from "vite";
+import { fileURLToPath, URL } from "node:url";
+import { readdirSync, statSync, readFileSync } from "node:fs";
+import { resolve } from "node:path";
+
+import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
-import dts from "vite-plugin-dts";
-import { resolve } from "path";
-import * as fs from "fs";
+import vueJsx from "@vitejs/plugin-vue-jsx";
+// import vueDevTools from 'vite-plugin-vue-devtools'
+import importToCDN from "vite-plugin-cdn-import";
+// @ts-expect-error: no types for postcss-prefix-selector
+import prefixer from "postcss-prefix-selector";
+import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 
-const componentsDir = resolve(__dirname, "components");
-const componentDirs = fs.readdirSync(componentsDir).filter((name) => {
-  return fs.statSync(resolve(componentsDir, name)).isDirectory();
-});
+// https://vite.dev/config/
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), "");
+  const stylePrefix = env.VITE_STYLE_PREFIX || ".vwp";
 
-const entries: Record<string, string> = {
-  index: resolve(__dirname, "index.ts"),
-};
+  // 读取版本号
+  const pkg = JSON.parse(readFileSync(new URL("./package.json", import.meta.url), "utf-8"));
+  const version = pkg.version || "unknown";
 
-componentDirs.forEach((dir) => {
-  entries[dir] = resolve(componentsDir, dir, "index.ts");
-});
+  const componentsDir = resolve(__dirname, "components");
+  const componentDirs = readdirSync(componentsDir).filter((name) => {
+    return statSync(resolve(componentsDir, name)).isDirectory();
+  });
 
-export default componentDirs.map((dir) => {
-  return defineConfig({
-    plugins: [
-      vue(),
-      dts({
-        include: [`components/${dir}/**/*.ts`, `components/${dir}/**/*.vue`],
-        outDir: `dist/${dir}`,
-        rollupTypes: true,
-      }),
-    ],
+  const entries: Record<string, string> = {
+    index: resolve(componentsDir, "index.ts"),
+  };
+
+  componentDirs.forEach((dir) => {
+    const entryPath = resolve(componentsDir, dir, "index.ts");
+    if (statSync(entryPath).isFile()) {
+      entries[dir] = entryPath;
+    }
+  });
+  console.log("Component entries:", entries);
+  console.log("Building version:", version);
+  return {
     build: {
-      outDir: `dist/${dir}`,
+      outDir: `dist/${version}`,
+      cssCodeSplit: false,
       lib: {
-        entry: resolve(componentsDir, dir, "index.ts"),
-        name: `IChain${dir.charAt(0).toUpperCase() + dir.slice(1)}`,
-        formats: ["es", "cjs"],
-        fileName: (format) => `index.${format}.js`,
+        entry: entries,
+        formats: ["es"],
+        fileName: (format, entryName) => `${entryName}.${format}.js`,
       },
       rollupOptions: {
         external: ["vue"],
@@ -41,10 +52,49 @@ export default componentDirs.map((dir) => {
           globals: {
             vue: "Vue",
           },
-          exports: "named",
-          assetFileNames: "style.[ext]",
         },
       },
     },
-  });
+    css: {
+      postcss: {
+        plugins: [
+          prefixer({
+            prefix: stylePrefix,
+            transform(prefix: string, selector: string, prefixedSelector: string) {
+              if (selector === "body" || selector === "html") {
+                return prefix;
+              }
+              return prefixedSelector;
+            },
+          }),
+        ],
+      },
+    },
+    plugins: [
+      vue(),
+      vueJsx(),
+      // vueDevTools(),
+      cssInjectedByJsPlugin({
+        jsAssetsFilterFunction: (outputChunk) => {
+          // 只在 es 格式的入口文件中注入 CSS
+          return outputChunk.fileName.endsWith(".es.js");
+        },
+      }),
+      importToCDN({
+        enableInDevMode: true,
+        modules: [
+          {
+            name: "vue",
+            var: "Vue",
+            path: `https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.min.js?t=${Date.now()}`, // 添加时间戳
+          },
+        ],
+      }),
+    ],
+    resolve: {
+      alias: {
+        "@": fileURLToPath(new URL("./src", import.meta.url)),
+      },
+    },
+  };
 });
