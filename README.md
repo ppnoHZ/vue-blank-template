@@ -17,6 +17,10 @@
 
 组件的 index.ts 需要导出一个 Component 对象，iChain Personal Workspace插件会通过这个对象来加载组件。如有其他需要导出的内容，可以在 index.ts 里继续导出，但必须保证 Component 对象的存在。逻辑取决于 iChain Personal Workspace 插件的实现。
 
+### TODO List
+
+- [ ] http请求，复用iChain Personal Workspace插件的http请求工具
+
 ## Quick Start
 
 ### dev
