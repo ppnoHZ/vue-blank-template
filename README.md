@@ -13,6 +13,10 @@
 
 先确定iChain里是否有引用，如果有引用则需要iChain暴露为全局变量，打包的时候需要把第三方插件设置为外部依赖，打包出来的文件会被iChain Personal Workspace插件加载使用。
 
+### 组件 index.ts
+
+组件的 index.ts 需要导出一个 Component 对象，iChain Personal Workspace插件会通过这个对象来加载组件。如有其他需要导出的内容，可以在 index.ts 里继续导出，但必须保证 Component 对象的存在。逻辑取决于 iChain Personal Workspace 插件的实现。
+
 ## Quick Start
 
 ### dev

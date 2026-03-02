@@ -10,7 +10,7 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (e: "change", value: string): void;
+  change: [value: string];
 }>();
 
 const count = ref(0);
