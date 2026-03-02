@@ -20,6 +20,8 @@
 ### TODO List
 
 - [ ] http请求，复用iChain Personal Workspace插件的http请求工具
+- [ ] 认证，直接复制token，在本地实现认证
+- [ ] iChain全局状态同步,使用 provider/inject 实现全局状态同步,需要定义有哪些状态需要同步
 - [ ] 组件开发规范
 - [ ] 组件开发文档
 - [ ] 组件开发示例
